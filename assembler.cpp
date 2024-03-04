@@ -6,7 +6,7 @@
 using namespace std;
 
 vector<string> input, output;
-vector<pair<string, long long>> labels;
+unordered_map<string, long long> labels;
 
 void preProcessInput(string fileName)
 {
@@ -31,7 +31,7 @@ void preProcessInput(string fileName)
                 trim(inp);
 
                 pair<string, long long> newLabel(label, pc);
-                labels.push_back(newLabel);
+                labels[label] = pc;
             }
 
             input.push_back(inp);
