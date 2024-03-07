@@ -134,6 +134,13 @@ void assemble_I(string code, long long pc)
         i = stoi(words[3]);
     }
 
+    if (i < -MAX_IMM_12 || i > MAX_IMM_12 - 1)
+    {
+        cout << "Error at pc : " << pc << endl
+             << "Immediate value out of bounds" << endl;
+        exit(-1);
+    }
+
     imm = decToImm(i, 12);
 
     string bin = imm + rs1 + func3 + rd + opcode;
@@ -158,6 +165,13 @@ void assemble_S(string code, long long pc)
     int startPos = words[2].find('(');
     int endPos = words[2].find(')');
     int i = stoi(words[2].substr(0, startPos));
+
+    if (i < -MAX_IMM_12 || i > MAX_IMM_12 - 1)
+    {
+        cout << "Error at pc : " << pc << endl
+             << "Immediate value out of bounds" << endl;
+        exit(-1);
+    }
 
     opcode = instructionData[words[0]]["opcode"];
     func3 = instructionData[words[0]]["func3"];
@@ -199,6 +213,13 @@ void assemble_SB(string code, long long pc)
         i = stoi(words[3]);
     }
 
+    if (i < -(MAX_IMM_12 * 2) || i > (MAX_IMM_12 * 2) - 1)
+    {
+        cout << "Error at pc : " << pc << endl
+             << "Immediate value out of bounds" << endl;
+        exit(-1);
+    }
+
     imm = decToImm(i, 13);
 
     string bin = imm[0] + imm.substr(2, 6) + rs2 + rs1 + func3 + imm.substr(8, 4) + imm[1] + opcode;
@@ -224,6 +245,13 @@ void assemble_U(string code, long long pc)
     rd = regToStr[words[1]];
     opcode = instructionData[words[0]]["opcode"];
     i = stoi(words[2]);
+
+    if (i < -MAX_IMM_20 || i > MAX_IMM_20 - 1)
+    {
+        cout << "Error at pc : " << pc << endl
+             << "Immediate value out of bounds" << endl;
+        exit(-1);
+    }
 
     imm = decToImm(i, 20);
 
@@ -257,6 +285,13 @@ void assemble_UJ(string code, long long pc)
     else
     {
         i = stoi(words[2]);
+    }
+
+    if (i < -(MAX_IMM_20 * 2) || i > (MAX_IMM_20 * 2) - 1)
+    {
+        cout << "Error at pc : " << pc << endl
+             << "Immediate value out of bounds" << endl;
+        exit(-1);
     }
 
     imm = decToImm(i, 21);

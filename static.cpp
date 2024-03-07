@@ -5,9 +5,13 @@ using namespace std;
 unordered_set<string> R, I, S, SB, U, UJ;
 unordered_map<string, unordered_map<string, string>> instructionData;
 unordered_map<string, string> regToStr;
+int MAX_IMM_12, MAX_IMM_20;
 
 void initialiseStaticData()
 {
+    MAX_IMM_12 = pow(2, 11);
+    MAX_IMM_20 = pow(2, 19);
+
     R = {"and", "add", "or", "sll", "slt", "sra", "srl", "sub", "xor", "mul", "div", "rem"};
     I = {"addi", "andi", "ori", "lb", "ld", "lh", "lw", "jalr"};
     S = {"sb", "sw", "sd", "sh"};

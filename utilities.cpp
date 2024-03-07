@@ -86,7 +86,7 @@ string binToHex(string bin)
     return hex;
 }
 
-// convert decimal to hexadecimal
+// Convert decimal to hexadecimal
 string decToHex(long long dec)
 {
     string hex = "";
@@ -121,6 +121,7 @@ string decToHex(long long dec)
     return ("0x" + hex);
 }
 
+// Convert decimal to immediate value
 string decToImm(int dec, int len)
 {
     string bin = "";
