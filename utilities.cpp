@@ -1,3 +1,5 @@
+// Helper file containing Utility Functions to support the main logic of assembler
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -9,6 +11,7 @@ inline void ltrim(string &s)
     s.erase(s.begin(), find_if(s.begin(), s.end(), [](unsigned char ch)
                                { return !isspace(ch); }));
 }
+// -------------------------------------------------------------------------------------------
 
 // trim from end
 inline void rtrim(string &s)
@@ -18,6 +21,7 @@ inline void rtrim(string &s)
                 .base(),
             s.end());
 }
+// -------------------------------------------------------------------------------------------
 
 // trim from both ends
 inline void trim(string &s)
@@ -25,6 +29,7 @@ inline void trim(string &s)
     rtrim(s);
     ltrim(s);
 }
+// -------------------------------------------------------------------------------------------
 
 // Remove commas and consecutive spaces
 inline void rectifyCode(string &s)
@@ -34,6 +39,7 @@ inline void rectifyCode(string &s)
                         { return a == ' ' && b == ' '; }),
             s.end());
 }
+// -------------------------------------------------------------------------------------------
 
 // Split a string into words
 vector<string> split(string s)
@@ -85,6 +91,7 @@ string binToHex(string bin)
 
     return hex;
 }
+// -------------------------------------------------------------------------------------------
 
 // Convert decimal to hexadecimal
 string decToHex(long long dec)
@@ -120,6 +127,7 @@ string decToHex(long long dec)
 
     return ("0x" + hex);
 }
+// -------------------------------------------------------------------------------------------
 
 // Convert decimal to immediate value
 string decToImm(int dec, int len)

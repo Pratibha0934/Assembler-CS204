@@ -1,17 +1,25 @@
+// Helper file containing Utility Functions to support the main logic of assembler
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
-unordered_set<string> R, I, S, SB, U, UJ;
-unordered_map<string, unordered_map<string, string>> instructionData;
-unordered_map<string, string> regToStr;
-unordered_map<string, int> directivesSizes;
-int MAX_IMM_12, MAX_IMM_20;
+unordered_set<string> R, I, S, SB, U, UJ;                             // Sets to differentiate between different formats of commands
+unordered_map<string, unordered_map<string, string>> instructionData; // Stores Pre-defined data of of all commands
+unordered_map<string, string> regToStr;                               // Maps register to its binary value
+unordered_map<string, int> directivesSizes;                           // set of all assembler directives
+int MAX_IMM_12, MAX_IMM_20;                                           // Limit Constants
 
+// ---------------------------------------------------------------------------------------------------------------------------------
+// Function to initialise all constant data
 void initialiseStaticData()
 {
+    // ------------------------------------------------------------------------------------------
+
     MAX_IMM_12 = pow(2, 11);
     MAX_IMM_20 = pow(2, 19);
+
+    // ------------------------------------------------------------------------------------------
 
     R = {"and", "add", "or", "sll", "slt", "sra", "srl", "sub", "xor", "mul", "div", "rem"};
     I = {"addi", "andi", "ori", "lb", "ld", "lh", "lw", "jalr"};
@@ -20,11 +28,15 @@ void initialiseStaticData()
     U = {"auipc", "lui"};
     UJ = {"jal"};
 
+    // ------------------------------------------------------------------------------------------
+
     directivesSizes[".byte"] = 1;
     directivesSizes[".half"] = 2;
     directivesSizes[".word"] = 4;
     directivesSizes[".dword"] = 8;
     directivesSizes[".asciiz"] = 1;
+
+    // ------------------------------------------------------------------------------------------
 
     instructionData["add"]["opcode"] = "0110011";
     instructionData["add"]["func3"] = "000";
@@ -128,6 +140,8 @@ void initialiseStaticData()
 
     instructionData["jal"]["opcode"] = "1101111";
 
+    // ------------------------------------------------------------------------------------------
+
     regToStr["x0"] = "00000";
     regToStr["x1"] = "00001";
     regToStr["x2"] = "00010";
@@ -160,4 +174,7 @@ void initialiseStaticData()
     regToStr["x29"] = "11101";
     regToStr["x30"] = "11110";
     regToStr["x31"] = "11111";
+
+    // ------------------------------------------------------------------------------------------
 }
+// ---------------------------------------------------------------------------------------------------------------------------------
