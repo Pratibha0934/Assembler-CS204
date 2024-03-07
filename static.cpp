@@ -2,7 +2,7 @@
 
 using namespace std;
 
-set<string> R, I, S, SB, U, UJ;
+unordered_set<string> R, I, S, SB, U, UJ;
 unordered_map<string, unordered_map<string, string>> instructionData;
 unordered_map<string, string> regToStr;
 

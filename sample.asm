@@ -1,2 +1,2 @@
-add x1, x2, x3 
-andi x5, x6, 10 
+sex: add x1 x1 x1
+jal x1 sex

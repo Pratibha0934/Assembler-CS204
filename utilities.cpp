@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <sstream>
 
 using namespace std;
 
@@ -54,28 +53,6 @@ vector<string> split(string s)
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 // Number Base Conversion functions /////////////////////////////////////////////////////////
-
-// Create map between binary number and its equivalent hexadecimal
-void createMap(unordered_map<string, char> *um)
-{
-    (*um)["0000"] = '0';
-    (*um)["0001"] = '1';
-    (*um)["0010"] = '2';
-    (*um)["0011"] = '3';
-    (*um)["0100"] = '4';
-    (*um)["0101"] = '5';
-    (*um)["0110"] = '6';
-    (*um)["0111"] = '7';
-    (*um)["1000"] = '8';
-    (*um)["1001"] = '9';
-    (*um)["1010"] = 'A';
-    (*um)["1011"] = 'B';
-    (*um)["1100"] = 'C';
-    (*um)["1101"] = 'D';
-    (*um)["1110"] = 'E';
-    (*um)["1111"] = 'F';
-}
-
 // convert binary to hexadecimal
 string binToHex(string bin)
 {
@@ -142,5 +119,40 @@ string decToHex(long long dec)
     reverse(hex.begin(), hex.end());
 
     return ("0x" + hex);
+}
+
+string decToImm(int dec, int len)
+{
+    string bin = "";
+    int n = dec;
+
+    if (dec < 0)
+    {
+        n = n + pow(2, len);
+    }
+
+    int rem;
+
+    while (n > 0)
+    {
+        bin = string(1, (char)(n % 2 + 48)) + bin;
+        n = n / 2;
+    }
+
+    int bl = bin.length();
+
+    for (int i = 0; i < len - bl; i++)
+    {
+        if (dec < 0)
+        {
+            bin = "1" + bin;
+        }
+        else
+        {
+            bin = "0" + bin;
+        }
+    }
+
+    return bin;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
