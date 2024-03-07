@@ -363,6 +363,9 @@ void assembleText()
             exit(-1);
         }
     }
+    string endLine = decToHex(pc + 4) + " $";
+
+    outputLines.push_back(endLine);
 }
 
 void assebleData()
@@ -429,7 +432,28 @@ void assebleData()
     }
 }
 
-void writeOutput() {}
+void writeOutput(string fileName)
+{
+    fstream file;
+
+    file.open(fileName, ios::out);
+
+    if (file.is_open())
+    {
+        for (auto s : outputLines)
+        {
+            file << s << endl;
+        }
+    }
+    else
+    {
+        cout << "Error in reading " << fileName << endl;
+        cout << "Exiting program ." << endl;
+        exit(-1);
+    }
+
+    file.close();
+}
 
 int main()
 {
@@ -437,6 +461,7 @@ int main()
     preProcessInput("sample.asm");
     assembleText();
     assebleData();
-    writeOutput();
+    writeOutput("output.mc");
+
     return 0;
 }
