@@ -6,7 +6,6 @@ The project contains a program which assembles a **RISC-V code to machine code**
 
     - [@shivambhagat79](https://www.github.com/shivambhagat79) Shivam Bhagat (2022CSB1123)
     - [@Pratibha0934](https://github.com/Pratibha0934) Pratibha Garg (2022CSB1204)
-    - []() Saharsh Saxena (2022CSB1116)
 
 ## Usage Instructions
 
