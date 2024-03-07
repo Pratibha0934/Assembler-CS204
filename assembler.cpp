@@ -365,30 +365,78 @@ void assembleText()
     }
 }
 
+void assebleData()
+{
+    vector<string> words;
+    int size;
+    long long address = 268435456;
+    long long val;
+
+    for (auto code : dataLines)
+    {
+        words = split(code);
+
+        if (directivesSizes.find(words[0]) != directivesSizes.end())
+        {
+            size = directivesSizes[words[0]];
+        }
+        else
+        {
+            cout << "Error at .data segment" << endl;
+            cout << "Line : " << code << endl;
+            exit(-1);
+        }
+
+        if (words[0] == ".asciiz")
+        {
+            string s = words[1].substr(1, words[1].length() - 2);
+
+            for (int i = 0; i < s.length(); i++)
+            {
+                val = s[i];
+
+                if (val < 0 || val > 255)
+                {
+                    cout << "Error at .data segment" << endl;
+                    cout << "Line : " << code << endl;
+                    cout << "Value out of bounds" << endl;
+                    exit(-1);
+                }
+                string output = decToHex(address) + " " + decToHex(val);
+
+                outputLines.push_back(output);
+                address += size;
+            }
+        }
+        else
+        {
+            for (int i = 1; i < words.size(); i++)
+            {
+                val = stol(words[i]);
+                if (val < -(pow(2, size * 8 - 1)) || val > pow(2, size * 8 - 1) - 1)
+                {
+                    cout << "Error at .data segment" << endl;
+                    cout << "Line : " << code << endl;
+                    cout << "Value out of bounds" << endl;
+                    exit(-1);
+                }
+                string output = decToHex(address) + " " + decToHex(val);
+
+                outputLines.push_back(output);
+                address += size;
+            }
+        }
+    }
+}
+
+void writeOutput() {}
+
 int main()
 {
     initialiseStaticData();
     preProcessInput("sample.asm");
-    // cout << decToImm(-34, 12) << endl;
-    // for (auto x : dataLines)
-    // {
-    //     cout << x << endl;
-    // }
-
-    // cout << "/////" << endl;
-
-    // for (auto x : textLines)
-    // {
-    //     cout << x << endl;
-    // }
-    // for (auto x : labels)
-    // {
-    //     cout << x.first << " " << x.second << endl;
-    // }
     assembleText();
-    for (auto x : outputLines)
-    {
-        cout << x << endl;
-    }
+    assebleData();
+    writeOutput();
     return 0;
 }

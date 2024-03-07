@@ -5,6 +5,7 @@ using namespace std;
 unordered_set<string> R, I, S, SB, U, UJ;
 unordered_map<string, unordered_map<string, string>> instructionData;
 unordered_map<string, string> regToStr;
+unordered_map<string, int> directivesSizes;
 int MAX_IMM_12, MAX_IMM_20;
 
 void initialiseStaticData()
@@ -18,6 +19,12 @@ void initialiseStaticData()
     SB = {"beq", "bne", "bge", "blt"};
     U = {"auipc", "lui"};
     UJ = {"jal"};
+
+    directivesSizes[".byte"] = 1;
+    directivesSizes[".half"] = 2;
+    directivesSizes[".word"] = 4;
+    directivesSizes[".dword"] = 8;
+    directivesSizes[".asciiz"] = 1;
 
     instructionData["add"]["opcode"] = "0110011";
     instructionData["add"]["func3"] = "000";
