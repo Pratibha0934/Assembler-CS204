@@ -366,6 +366,11 @@ void assembleText()
         code = textLines[i]; // extracting complete command
         pc = i * 4;          // getting pc
 
+        if (code == "")
+        {
+            continue;
+        }
+
         int spacePos = code.find(' ');
         if (spacePos != string::npos)
         {
@@ -517,11 +522,11 @@ void writeOutput(string fileName)
 // MAIN Function
 int main()
 {
-    initialiseStaticData();        // initialise all constants required for assembling
-    preProcessInput("sample.asm"); // Pre-process the program
-    assembleText();                // Assemble .text segment
-    assebleData();                 // Assemble .data segment
-    writeOutput("output.mc");      // Write output
+    initialiseStaticData();       // initialise all constants required for assembling
+    preProcessInput("input.asm"); // Pre-process the program
+    assembleText();               // Assemble .text segment
+    assebleData();                // Assemble .data segment
+    writeOutput("output.mc");     // Write output
 
     return 0;
 }

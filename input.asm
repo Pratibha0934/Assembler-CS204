@@ -1,7 +1,26 @@
+# Data Segment
 .data
-.asciiz "AB"
+.word 5 4 2
+.half 3
+.asciiz "CS204"
 
-.text
-add x1 x1 x1
-sub x2 x2 x2
-mul x3 x3 x3
+# Text segment
+.text 
+
+# R Format
+label: add x2, x3, x4
+
+# I Format
+addi x3, x4, -17
+
+# S Format
+sw x3, 12(x13)
+
+# SB Fomrat
+beq x0, x0, label
+
+# U Format
+lui x3, 9483
+
+# UJ Format
+jal x1, label
